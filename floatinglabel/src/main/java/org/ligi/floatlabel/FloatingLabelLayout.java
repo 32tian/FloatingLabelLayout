@@ -325,13 +325,11 @@ public class FloatingLabelLayout extends FrameLayout {
         }
 
         public static Trigger fromValue(int value) {
-            Trigger[] triggers = Trigger.values();
-            for (int i = 0; i < triggers.length; i++) {
-                if (triggers[i].getValue() == value) {
-                    return triggers[i];
+            for (Trigger trigger : Trigger.values()) {
+                if (trigger.getValue()==value) {
+                    return trigger;
                 }
             }
-
             throw new IllegalArgumentException(value + " is not a valid value for " + Trigger.class.getSimpleName());
         }
     }
