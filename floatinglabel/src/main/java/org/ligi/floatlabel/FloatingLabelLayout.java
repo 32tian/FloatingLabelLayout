@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mrengineer13.fll;
+package org.ligi.floatlabel;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -31,7 +31,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.AnimatorListenerAdapter;
 import com.nineoldandroids.view.ViewHelper;
@@ -44,7 +43,7 @@ import com.nineoldandroids.view.ViewPropertyAnimator;
  * @see <a href="https://dribbble.com/shots/1254439--GIF-Mobile-Form-Interaction">Matt D. Smith on Dribble</a>
  * @see <a href="http://bradfrostweb.com/blog/post/float-label-pattern/">Brad Frost's blog post</a>
  */
-public class FloatingLabelEditText extends FrameLayout {
+public class FloatingLabelLayout extends FrameLayout {
 
     private static final long ANIMATION_DURATION = 150;
     private static final float DEFAULT_PADDING_LEFT_RIGHT_DP = 12f;
@@ -55,20 +54,20 @@ public class FloatingLabelEditText extends FrameLayout {
     public static final String SAVED_TRIGGER = "SAVED_TRIGGER";
     public static final String SAVED_FOCUS = "SAVED_FOCUS";
 
-    private EditText mEditText = null;
+    private EditText mEditText;
     private TextView mLabel;
     private Trigger mTrigger;
     private CharSequence mHint;
 
-    public FloatingLabelEditText(Context context) {
+    public FloatingLabelLayout(Context context) {
         this(context, null);
     }
 
-    public FloatingLabelEditText(Context context, AttributeSet attrs) {
+    public FloatingLabelLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public FloatingLabelEditText(Context context, AttributeSet attrs, int defStyle) {
+    public FloatingLabelLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
         final TypedArray a = context
@@ -86,34 +85,29 @@ public class FloatingLabelEditText extends FrameLayout {
                         android.R.style.TextAppearance_Small)
         );
 
-        EditText edit = new EditText(context);
-        edit.setPadding(sidePadding, 0, sidePadding, 0);
-
         int triggerInt = a.getInt(R.styleable.FloatingLabelLayout_floatLabelTrigger, Trigger.TYPE.getValue());
         mTrigger = Trigger.fromValue(triggerInt);
 
-        this.addView(mLabel, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        this.addView(edit, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        addView(mLabel, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
         a.recycle();
     }
 
 
     @Override
-    public Parcelable onSaveInstanceState() {
+    protected Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
         bundle.putParcelable(SAVED_SUPER_STATE, super.onSaveInstanceState());
         bundle.putInt(SAVED_LABEL_VISIBILITY, mLabel.getVisibility());
         bundle.putCharSequence(SAVED_HINT, mHint);
         bundle.putInt(SAVED_TRIGGER, mTrigger.getValue());
         bundle.putBoolean(SAVED_FOCUS, getEditText().isFocused());
-        bundle.putCharSequence("SAVED_TEXT", getText());
         return bundle;
     }
 
     @SuppressWarnings("ResourceType")
     @Override
-    public void onRestoreInstanceState(Parcelable state) {
+    protected void onRestoreInstanceState(Parcelable state) {
         if (state instanceof Bundle) {
             Bundle bundle = (Bundle) state;
 
@@ -136,7 +130,6 @@ public class FloatingLabelEditText extends FrameLayout {
                 }
             }
 
-            mEditText.setText(bundle.getCharSequence("SAVED_TEXT"));
             // retrieve super state
             state = bundle.getParcelable(SAVED_SUPER_STATE);
         }
@@ -147,9 +140,9 @@ public class FloatingLabelEditText extends FrameLayout {
     public void addView(View child, int index, ViewGroup.LayoutParams params) {
         if (child instanceof EditText) {
             // If we already have an EditText, throw an exception
-            /*if (mEditText != null) {
+            if (mEditText != null) {
                 throw new IllegalArgumentException("We already have an EditText, can only have one");
-            }*/
+            }
 
             // Update the layout params so that the EditText is at the bottom, with enough top
             // margin to show the label
@@ -300,9 +293,9 @@ public class FloatingLabelEditText extends FrameLayout {
                 return;
             }
 
-            if (TextUtils.isEmpty(getText())) {
+            if (TextUtils.isEmpty(s)) {
                 hideLabel();
-            } else if (!getLabel().isShown()) {
+            } else {
                 showLabel();
             }
         }

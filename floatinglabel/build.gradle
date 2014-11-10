@@ -1,25 +1,19 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 20
-    buildToolsVersion '20.0.0'
+    compileSdkVersion 21
+    buildToolsVersion '21.1.1'
 
     defaultConfig {
-        applicationId "com.mrengineer13.fll"
+        applicationId "org.ligi.floatlabel"
         minSdkVersion 9
-        targetSdkVersion 20
+        targetSdkVersion 21
         versionCode 1
         versionName "0.1"
     }
-    buildTypes {
-        release {
-            runProguard true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            runProguard true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+
+    lintOptions {
+        abortOnError false
     }
 }
 
