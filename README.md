@@ -11,10 +11,10 @@
 # Usage
 1. Add *floatinglabel* module as a dependency to your project
 
-2a. Either add the following to your xml:
+2. Either add the following to your xml:
 
 ```xml
-        <com.mrengineer13.fll.FloatingLabelEditText
+        <org.ligi.floatlabel.FloatingLabelLayout
             xmlns:fll="http://schemas.android.com/apk/res-auto"
             android:id="@+id/fll_username"
             android:layout_width="match_parent"
@@ -33,13 +33,8 @@
                 android:imeOptions="actionNext"
                 android:nextFocusDown="@+id/edit_password" />
     
-        </com.mrengineer13.fll.FloatingLabelEditText>
+        </org.ligi.floatlabel.FloatingLabelLayout>
 ```
-        
-2b. or if you want to create one programmatically then use
-
-     FloatingLabelEditText floatingLabelEditText = new FloatingLabelEditText(Activity.this);
-        
 
 # Known Bugs
 
@@ -51,6 +46,7 @@ As of v0.1 this library uses onFocusChangeListener so @Overriding it for the Edi
 
 1. [Matt Smith](http://mattdsmith.com/float-label-pattern/)  and [Google](http://www.google.com/design/spec/components/text-fields.html#text-fields-floating-labels) for the idea
 2. [Chris Banes](https://gist.github.com/chrisbanes/11247418) for his implementation
+3. [MrEngineer13](https://github.com/MrEngineer13/FloatingLabelLayout) for lifting it to github
 
 <!-- ## Developers-->
 
