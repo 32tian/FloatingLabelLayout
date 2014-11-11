@@ -13,6 +13,7 @@
 
 2a. Either add the following to your xml:
 
+```xml
         <com.mrengineer13.fll.FloatingLabelEditText
             xmlns:fll="http://schemas.android.com/apk/res-auto"
             android:id="@+id/fll_username"
@@ -33,6 +34,7 @@
                 android:nextFocusDown="@+id/edit_password" />
     
         </com.mrengineer13.fll.FloatingLabelEditText>
+```
         
 2b. or if you want to create one programmatically then use
 
