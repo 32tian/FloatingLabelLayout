@@ -8,9 +8,6 @@
 4. Two triggers, one based on focus and the other based on the input
 5. Backwards compatible to 2.3.x
 
-![Float label design pattern](http://dribbble.s3.amazonaws.com/users/6410/screenshots/1254439/form-animation-_gif_.gif)
-  
-
 # Usage
 1. Add *floatinglabel* module as a dependency to your project
 
