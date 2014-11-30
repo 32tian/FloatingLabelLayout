@@ -9,31 +9,39 @@
 5. Backwards compatible to 2.3.x
 
 # Usage
-1. Add *floatinglabel* module as a dependency to your project
+1. Add *floatinglabel* dependency:
+```groovy
 
+repositories {
+    jcenter()
+}
+dependencies {
+    compile 'org.ligi:floatlabel:0.2.0'
+}
+```
 2. Either add the following to your xml:
 
 ```xml
-        <org.ligi.floatlabel.FloatingLabelLayout
-            xmlns:fll="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/fll_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            fll:floatLabelTrigger="text"
-            fll:floatLabelTextAppearance="@style/TextAppearance.FLL.FloatLabel">
+<org.ligi.floatlabel.FloatingLabelLayout
+    xmlns:fll="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fll_username"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    fll:floatLabelTrigger="text"
+    fll:floatLabelTextAppearance="@style/TextAppearance.FLL.FloatLabel">
     
-            <EditText
-                android:id="@+id/edit_username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/account_username_hint"
-                android:singleLine="true"
-                android:inputType="textNoSuggestions"
-                android:imeOptions="actionNext"
-                android:nextFocusDown="@+id/edit_password" />
+    <EditText
+        android:id="@+id/edit_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/account_username_hint"
+        android:singleLine="true"
+        android:inputType="textNoSuggestions"
+        android:imeOptions="actionNext"
+        android:nextFocusDown="@+id/edit_password" />
     
-        </org.ligi.floatlabel.FloatingLabelLayout>
+</org.ligi.floatlabel.FloatingLabelLayout>
 ```
 
 # Known Bugs
